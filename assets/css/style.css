@@ -1,0 +1,404 @@
+/* --- Global & Typography GREY --- */
+
+
+
+body {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+    background-color: #f3f4f6; /* Light theme background */
+    color: #1f2937; /* Light theme text */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+table {
+    width: 100%;
+    margin-top: 1rem;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #e5e7eb;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+th {
+    background-color: #f9fafb;
+}
+
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+}
+
+/* --- Components --- */
+.reminder-box {
+    background-color: #eef2ff; /* A very light indigo background */
+    border-left: 4px solid #818cf8; /* Light indigo accent */
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    color: #312e81; /* Dark indigo text */
+}
+
+.example-box {
+    background-color: #f9fafb; /* A very light gray background */
+    border-left: 4px solid #c4b5fd; /* Light purple accent */
+    padding: 1.5rem; /* Adjust this value for more/less space */
+    margin-top: 1.5rem;
+    border-radius: 1.0rem;
+}
+.guide-section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    margin-bottom: 2rem;
+    border: 1px solid transparent;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.lyric-line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.lyric-line textarea {
+    flex-grow: 1;
+    border: 1px solid #d1d5db;
+}
+
+.lyric-line-label {
+    font-family: monospace;
+    font-size: 1rem;
+    min-width: 40px; /* Ensures alignment */
+}
+
+#song-output {
+    white-space: pre-wrap;
+}
+
+.sound-choice-btn {
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    border: 2px solid #d1d5db;
+    background-color: #f9fafb;
+    color: #374151;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+}
+
+.sound-choice-btn:hover {
+    border-color: #8b5cf6;
+    background-color: #f5f3ff;
+}
+
+.sound-choice-btn.selected {
+    background-color: #8b5cf6;
+    color: white;
+    border-color: #8b5cf6;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    transform: translateY(-2px);
+}
+
+.error-message {
+    color: #0f766e; /* Turquoise text */
+    background-color: #f0fdfa; /* Turquoise background */
+    border: 1px solid #99f6e4; /* Turquoise border */
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* --- Media & Images --- */
+.image-cropper {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.image-cropper img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* --- Instructional Design Rationale Tooltips --- */
+.id-rationale-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.id-rationale-icon {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 9999px;
+    background-color: #e0e7ff; /* Light indigo */
+    color: #3730a3; /* Dark indigo */
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.25rem;
+    font-family: serif;
+    font-style: italic;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s;
+}
+
+.id-rationale-container:hover .id-rationale-icon {
+    transform: scale(1.1);
+}
+
+.id-rationale-tooltip {
+    visibility: hidden;
+    opacity: 0;
+    width: 250px;
+    background-color: #1f2937;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 10;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -125px; /* Use half of the width to center */
+    transition: opacity 0.3s;
+    font-size: 0.875rem;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1.5;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.id-rationale-tooltip::after { /* Tooltip arrow */
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #1f2937 transparent transparent transparent;
+}
+
+.id-rationale-container:hover .id-rationale-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* --- Dark Mode Overrides --- */
+.dark body {
+    background-color: #111827;
+    color: #d1d5db;
+}
+
+.dark h1, .dark h2, .dark h3, .dark .song-title-input::placeholder {
+    color: #f9fafb;
+}
+
+.dark p {
+    color: #d1d5db;
+}
+
+.dark section.guide-section {
+    background-color: #1f2937;
+    border: 1px solid #374151;
+}
+
+.dark textarea, .dark .song-title-input {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: #f9fafb;
+}
+
+.dark textarea:focus, .dark .song-title-input:focus {
+    border-color: #a78bfa;
+    box-shadow: 0 0 0 2px #8b5cf6;
+}
+
+.dark .lyric-line textarea {
+    border: 1px solid #4b5563;
+}
+
+.dark .lyric-line-label {
+    color: #9ca3af;
+}
+
+.dark .example-box {
+    background-color: #374151;
+    border-left-color: #a78bfa;
+}
+
+.dark .reminder-box {
+    background-color: #312e81;
+    border-left-color: #c4b5fd;
+    color: #e0e7ff;
+}
+
+.dark .structure-diagram {
+    background-color: #374151;
+    color: #d1d5db;
+}
+
+.dark #song-output, .dark #musician-notes-output {
+    background-color: #111827;
+    border-color: #374151;
+    color: #d1d5db;
+}
+
+.dark table {
+    border-color: #374151;
+}
+
+.dark th, .dark td {
+    border-color: #374151;
+}
+
+.dark th {
+    background-color: #1f2937;
+}
+
+.dark .sound-choice-btn {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: #d1d5db;
+}
+
+.dark .sound-choice-btn:hover {
+     border-color: #a78bfa;
+     background-color: #4338ca;
+}
+
+.dark .sound-choice-btn.selected {
+    background-color: #a78bfa;
+    color: #111827;
+    border-color: #a78bfa;
+}
+
+.dark .error-message {
+     background-color: #115e59;
+     border-color: #14b8a6;
+     color: #ccfbf1;
+}
+
+.dark .id-rationale-icon {
+    background-color: #374151;
+    color: #c7d2fe;
+}
+
+.dark .id-rationale-tooltip {
+    background-color: #f9fafb;
+    color: #1f2937;
+}
+
+.dark .id-rationale-tooltip::after {
+     border-color: #f9fafb transparent transparent transparent;
+}
+
+/* --- General Purpose Text Tooltip --- */
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    text-decoration: underline dotted;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+    width: 220px;
+    background-color: #1f2937;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 0.875rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    position: absolute;
+    z-index: 10;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -110px;
+    transition: opacity 0.3s;
+}
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.example-box p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+}
+
+/* --- Tooltip Modifier for Downward Position --- */
+.id-rationale-tooltip.tooltip-bottom {
+    top: 160%;
+    bottom: auto;
+}
+
+.id-rationale-tooltip.tooltip-bottom::after {
+    top: -10px;
+    bottom: auto;
+    border-color: transparent transparent #1f2937 transparent;
+}
+
+/* --- Custom Action Buttons --- */
+.action-btn {
+    color: white;
+    font-weight: bold;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border: 3px solid;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+/* Color Schemes */
+.btn-save {
+    background-color: #0d47a1; /* Dark Blue */
+    border-color: #42a5f5; /* Light Blue */
+    box-shadow: 0 0 8px #42a5f5, inset 0 0 5px rgba(0,0,0,0.4);
+}
+.btn-assemble {
+    background-color: #1b5e20; /* Dark Green */
+    border-color: #66bb6a; /* Light Green */
+    box-shadow: 0 0 8px #66bb6a, inset 0 0 5px rgba(0,0,0,0.4);
+}
+.btn-load {
+    background-color: #4a148c; /* Dark Purple */
+    border-color: #ab47bc; /* Light Purple */
+    box-shadow: 0 0 8px #ab47bc, inset 0 0 5px rgba(0,0,0,0.4);
+}
+
+/* Hover Effect */
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--glow-color), inset 0 0 8px rgba(0,0,0,0.4);
+}
+
+.btn-save:hover { --glow-color: #42a5f5; }
+.btn-assemble:hover { --glow-color: #66bb6a; }
+.btn-load:hover { --glow-color: #ab47bc; }
